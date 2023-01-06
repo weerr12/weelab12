@@ -8,9 +8,9 @@ string cardNames[] = {"","A","2","3","4","5","6","7","8","9","10","J","Q","K"};
 int cardScores[] = {0,1,2,3,4,5,6,7,8,9,10,10,10,10};
 
 int drawCard(void){
-	int n;
-	n = rand()%13 + 1;
-	return n;
+	int number;
+	number = rand()%13 + 1;
+	return number;
 	//Write the function to random the number from 1 to 13 and return that random number.
 }
 
@@ -30,7 +30,7 @@ int findYugiAction(int s){
 	if(s == 9) return 2; // Yugi will definitely stay (2) when current score (s) is equal to 9
 	else if(s < 6) return 1; // Yugi will definitely draw (1) when current score (s) is less than 6
 	else{
-		int r = rand()%100 +2;
+		int r = rand()%100 +1;
 		if(r<=69) return 1;
 		else return 2;
 		// If current score is 6,7,8, Yugi will draw with probability 69% and will stay with probability 31% 
@@ -41,8 +41,8 @@ int findYugiAction(int s){
 void checkWinner(int p, int y){
 	// Write condition for cout in this function
 	cout << "\n---------------------------------\n";
-	if(p>y) cout <<   "|             Draw!!!           |"; // when p is equal to y
-	else if(y>p) cout <<   "|         Player wins!!!        |"; // when p is greater than y
+	if(p==y) cout <<   "|             Draw!!!           |"; // when p is equal to y
+	else if(p>y) cout <<   "|         Player wins!!!        |"; // when p is greater than y
 	else cout <<   "|          Yugi wins!!!         |"; // when p is less than y
 	cout << "\n---------------------------------\n";
 }
@@ -66,8 +66,9 @@ int main(){
 		//The following lines of code are not completed. Please correct it.
 		playerCards[2] = drawCard();
 		cout << "Player draws the 3rd card!!!" << "\n";
-		cout << "Your 3rd card: " << "\n";
-		cout << "Your new score: " << "\n";
+		cout << "Your 3rd card: " << cardNames[playerCards[2]] << "\n";
+		playerScore = calScore(playerCards[0],playerCards[1],playerCards[2]);
+		cout << "Your new score: " << playerScore << "\n";
 		
 	}
 	cout << "------------ Turn end -------------------\n\n";
